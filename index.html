@@ -4,100 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdotaDF — Rede de Adoção de Animais do Distrito Federal</title>
-  <meta name="description" content="Plataforma gratuita que conecta animais abandonados do DF com famílias que querem adotar. Cadastre animais, veja o mapa e encontre seu novo melhor amigo." />
-  <meta property="og:title" content="AdotaDF — Adoção de Animais no DF" />
-  <meta property="og:description" content="Conectamos animais abandonados do Distrito Federal com famílias amorosas. Grátis, simples e comunitário." />
-  <meta property="og:type" content="website" />
-
-  <!-- Fontes -->
+  <meta name="description" content="Plataforma gratuita que conecta animais abandonados do DF com famílias que querem adotar." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* ===========================
-       RESET & VARIÁVEIS
-    =========================== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --teal:        #1D9E75;
-      --teal-dark:   #0F6E56;
-      --teal-deep:   #085041;
-      --teal-light:  #E1F5EE;
-      --teal-mid:    #9FE1CB;
-      --amber:       #EF9F27;
-      --amber-dark:  #BA7517;
-      --amber-light: #FAEEDA;
-      --coral:       #D85A30;
-      --coral-light: #FAECE7;
-      --text:        #2C2C2A;
-      --text-muted:  #888780;
-      --text-light:  #B4B2A9;
-      --bg:          #FFFDF8;
-      --bg-warm:     #FBF7F0;
-      --bg-card:     #FFFFFF;
-      --border:      rgba(0,0,0,0.08);
-      --border-md:   rgba(0,0,0,0.13);
-      --radius-sm:   8px;
-      --radius-md:   14px;
-      --radius-lg:   20px;
-      --radius-xl:   28px;
-      --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
-      --shadow-md:   0 8px 32px rgba(0,0,0,0.08);
-      --shadow-lg:   0 16px 56px rgba(0,0,0,0.10);
+      --ink:        #0A0A0F;
+      --ink-2:      #1A1A2E;
+      --ink-3:      #2D2D44;
+      --mist:       #F4F2EE;
+      --mist-2:     #EAE7E0;
+      --mist-3:     #D9D5CC;
+      --sage:       #5C7A5E;
+      --sage-dark:  #3D5440;
+      --sage-light: #B8CEBA;
+      --sage-pale:  #EBF1EB;
+      --gold:       #C9A84C;
+      --gold-dark:  #8B6E28;
+      --gold-light: #F5EBD0;
+      --rust:       #B85C38;
+      --rust-light: #F5E8E2;
+      --white:      #FDFCFA;
+      --r-sm:  6px;
+      --r-md:  12px;
+      --r-lg:  20px;
+      --r-xl:  32px;
+      --r-2xl: 48px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      background: var(--white);
+      color: var(--ink);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* ===========================
-       UTILITÁRIOS
-    =========================== */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
     }
 
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.75rem;
-      display: block;
-    }
+    /* ─── UTILS ─── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 4vw, 2.9rem);
+    .label-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
       font-weight: 700;
-      color: var(--text);
-      line-height: 1.12;
-      margin-bottom: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
+      padding: 6px 14px;
+      border: 1px solid var(--sage-light);
+      border-radius: 100px;
+      background: var(--sage-pale);
+      margin-bottom: 1.5rem;
     }
 
-    .section-sub {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      line-height: 1.75;
-      font-weight: 300;
+    .display {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .body-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      color: var(--ink-3);
+      line-height: 1.8;
+      font-weight: 400;
     }
 
     .btn {
@@ -105,67 +98,78 @@
       align-items: center;
       gap: 8px;
       border: none;
-      border-radius: 50px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: all 0.22s ease;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       text-decoration: none;
       white-space: nowrap;
     }
 
-    .btn-primary {
-      background: var(--teal);
-      color: #fff;
-      padding: 13px 28px;
-      font-size: 15px;
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: var(--r-sm);
     }
-    .btn-primary:hover {
-      background: var(--teal-dark);
+    .btn-dark:hover {
+      background: var(--ink-2);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(29,158,117,0.28);
+      box-shadow: 0 12px 32px rgba(10,10,15,0.25);
     }
 
-    .btn-secondary {
+    .btn-outline {
       background: transparent;
-      color: var(--text);
-      padding: 12px 28px;
-      font-size: 15px;
-      border: 1.5px solid var(--border-md);
+      color: var(--ink);
+      padding: 13px 28px;
+      border-radius: var(--r-sm);
+      border: 1.5px solid var(--mist-3);
     }
-    .btn-secondary:hover {
-      border-color: var(--teal);
-      color: var(--teal);
+    .btn-outline:hover {
+      border-color: var(--ink);
       transform: translateY(-2px);
     }
 
-    .btn-amber {
-      background: var(--amber);
-      color: var(--text);
+    .btn-sage {
+      background: var(--sage);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: var(--r-sm);
+    }
+    .btn-sage:hover {
+      background: var(--sage-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(92,122,94,0.3);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--ink);
       padding: 14px 32px;
-      font-size: 16px;
-      font-weight: 600;
+      border-radius: var(--r-sm);
+      font-weight: 700;
     }
-    .btn-amber:hover {
-      background: #FAC775;
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      color: var(--white);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(239,159,39,0.35);
+      box-shadow: 0 12px 32px rgba(201,168,76,0.35);
     }
 
-    /* ===========================
-       NAVBAR
-    =========================== */
+    /* ─── NAVBAR ─── */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 200;
-      background: rgba(255,253,248,0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      height: 66px;
+      height: 68px;
       display: flex;
       align-items: center;
+      background: rgba(253,252,250,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--mist-2);
     }
 
     .navbar .container {
@@ -176,14 +180,26 @@
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
       font-weight: 700;
-      color: var(--teal-dark);
+      color: var(--ink);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--ink);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
     }
 
     .nav-links {
@@ -194,178 +210,297 @@
     }
 
     .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-3);
       text-decoration: none;
+      letter-spacing: 0.3px;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover { color: var(--ink); }
 
     .nav-cta {
-      background: var(--teal);
-      color: #fff !important;
-      padding: 8px 20px;
-      border-radius: 24px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: background 0.2s, transform 0.15s !important;
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      padding: 9px 20px !important;
+      border-radius: var(--r-sm) !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: all 0.2s !important;
     }
-    .nav-cta:hover {
-      background: var(--teal-dark) !important;
-      color: #fff !important;
-      transform: scale(1.03);
-    }
+    .nav-cta:hover { background: var(--sage-dark) !important; color: var(--white) !important; }
 
-    /* Hamburger (mobile) */
     .hamburger {
       display: none;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
-      padding: 4px;
     }
     .hamburger span {
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: var(--ink);
       border-radius: 2px;
       transition: all 0.3s;
     }
 
-    /* ===========================
-       HERO
-    =========================== */
+    /* ─── HERO ─── */
     .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
+      min-height: calc(100vh - 68px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 5rem;
+      gap: 4rem;
+      padding: 5rem 0 5rem;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-glow {
+    .hero::before {
+      content: '';
       position: absolute;
-      inset: 0;
+      right: -10%;
+      top: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
       pointer-events: none;
-      background:
-        radial-gradient(ellipse 55% 45% at 15% 85%, rgba(29,158,117,0.12) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 55% at 85% 15%, rgba(239,159,39,0.12) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(29,158,117,0.04) 0%, transparent 60%);
     }
 
-    /* Patas decorativas de fundo */
-    .hero-paw {
+    .hero::after {
+      content: '';
       position: absolute;
-      font-size: 8rem;
-      opacity: 0.04;
+      left: -5%;
+      bottom: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
       pointer-events: none;
-      user-select: none;
     }
-    .hero-paw:nth-child(1) { top: 8%;  left: 3%;  transform: rotate(-20deg); font-size: 6rem; }
-    .hero-paw:nth-child(2) { top: 70%; left: 5%;  transform: rotate(15deg);  font-size: 5rem; }
-    .hero-paw:nth-child(3) { top: 15%; right: 5%; transform: rotate(30deg);  font-size: 7rem; }
-    .hero-paw:nth-child(4) { top: 60%; right: 3%; transform: rotate(-10deg); font-size: 5rem; }
 
-    .hero-badge {
-      display: inline-flex;
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: var(--amber-light);
-      color: var(--amber-dark);
-      border: 1px solid rgba(250,199,117,0.5);
-      border-radius: 30px;
-      padding: 6px 18px;
-      font-size: 13px;
-      font-weight: 500;
+      gap: 12px;
       margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-      animation: fadeDown 0.7s ease both;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--sage);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .hero-eyebrow span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
     }
 
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 6rem);
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
       font-weight: 900;
-      line-height: 1.03;
-      color: var(--text);
-      letter-spacing: -1.5px;
-      max-width: 860px;
-      position: relative;
-      z-index: 1;
+      line-height: 0.97;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 2rem;
       animation: fadeUp 0.7s 0.15s ease both;
     }
 
-    .hero h1 .hl {
-      color: var(--teal);
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .hero h1 .underline-gold {
       position: relative;
       display: inline-block;
+      color: var(--ink);
     }
-    .hero h1 .hl::after {
+    .hero h1 .underline-gold::after {
       content: '';
       position: absolute;
-      bottom: 4px; left: 0; right: 0;
-      height: 7px;
-      background: var(--amber);
-      border-radius: 4px;
-      opacity: 0.4;
-      z-index: -1;
+      bottom: 2px; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
     }
 
     .hero-sub {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 1.75rem auto 0;
-      font-weight: 300;
-      line-height: 1.75;
-      position: relative;
-      z-index: 1;
+      font-size: 15px;
+      color: var(--ink-3);
+      max-width: 420px;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
       animation: fadeUp 0.7s 0.28s ease both;
     }
 
     .hero-ctas {
       display: flex;
-      gap: 1rem;
-      margin-top: 2.75rem;
-      justify-content: center;
+      gap: 12px;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
       animation: fadeUp 0.7s 0.4s ease both;
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-light);
-      font-size: 12px;
+    /* Hero visual side */
+    .hero-visual {
+      position: relative;
       z-index: 1;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--text-light), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
+      display: flex;
+      justify-content: flex-end;
+      animation: fadeUp 0.8s 0.3s ease both;
     }
 
-    /* ===========================
-       STATS BAR
-    =========================== */
+    .hero-card-stack {
+      position: relative;
+      width: 380px;
+      height: 480px;
+    }
+
+    .hero-card-bg {
+      position: absolute;
+      width: 300px;
+      height: 380px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--mist-2);
+    }
+    .hero-card-bg:nth-child(1) {
+      background: var(--gold-light);
+      right: 0; top: 40px;
+      transform: rotate(4deg);
+    }
+    .hero-card-bg:nth-child(2) {
+      background: var(--sage-pale);
+      right: 30px; top: 20px;
+      transform: rotate(-2deg);
+    }
+
+    .hero-main-card {
+      position: absolute;
+      width: 310px;
+      background: var(--white);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--mist-2);
+      box-shadow: 0 32px 80px rgba(10,10,15,0.12);
+      right: 14px; top: 0;
+      padding: 0 0 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .hero-card-img {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--sage-pale), var(--mist-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+
+    .hero-card-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--sage);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .hero-card-body { padding: 1.25rem 1.5rem 0; }
+
+    .hero-card-body h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .hero-card-body p {
+      font-size: 12px;
+      color: var(--ink-3);
+      margin-bottom: 1rem;
+    }
+
+    .hero-card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-tag {
+      background: var(--mist);
+      border: 1px solid var(--mist-2);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-3);
+    }
+
+    .hero-card-action {
+      display: flex;
+      gap: 8px;
+    }
+
+    .hero-card-btn {
+      flex: 1;
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r-sm);
+      padding: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .hero-floating-tag {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--mist-2);
+      border-radius: var(--r-md);
+      padding: 10px 14px;
+      box-shadow: 0 8px 24px rgba(10,10,15,0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero-floating-tag.tag-1 {
+      left: -10px; bottom: 100px;
+      animation-delay: 0s;
+    }
+    .hero-floating-tag.tag-2 {
+      left: 20px; top: 60px;
+      animation-delay: 1.2s;
+    }
+
+    /* ─── STATS BAR ─── */
     .stats-bar {
-      background: var(--teal-deep);
+      background: var(--ink);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -374,93 +509,90 @@
     .stat-item {
       padding: 1.75rem 3.5rem;
       text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.1);
+      border-right: 1px solid rgba(255,255,255,0.08);
       flex: 1;
       min-width: 140px;
     }
     .stat-item:last-child { border-right: none; }
 
     .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: var(--amber);
+      color: var(--gold);
       line-height: 1;
+      letter-spacing: -0.03em;
     }
 
     .stat-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 6px;
     }
 
-    /* ===========================
-       COMO FUNCIONA
-    =========================== */
-    .section-pad {
-      padding: 6rem 0;
-    }
+    /* ─── SECTION LAYOUT ─── */
+    .section-pad { padding: 7rem 0; }
 
+    /* ─── COMO FUNCIONA ─── */
     .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1.25rem;
-      margin-top: 3.5rem;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      margin-top: 4rem;
+      background: var(--mist-2);
+      border: 1px solid var(--mist-2);
+      border-radius: var(--r-lg);
+      overflow: hidden;
     }
 
     .step-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem 1.75rem;
+      background: var(--white);
+      padding: 2.5rem 1.75rem;
       position: relative;
-      overflow: hidden;
-      transition: transform 0.22s, box-shadow 0.22s;
+      transition: background 0.25s;
     }
-    .step-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--teal), var(--teal-mid));
-      opacity: 0;
-      transition: opacity 0.22s;
-    }
-    .step-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-    .step-card:hover::before { opacity: 1; }
+    .step-card:hover { background: var(--mist); }
 
     .step-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      font-weight: 900;
-      color: var(--teal-light);
-      line-height: 1;
-      margin-bottom: 1.25rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sage);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-num::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--mist-2);
     }
 
     .step-card h3 {
-      font-size: 16px;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      color: var(--text);
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
     }
 
     .step-card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      font-weight: 300;
+      font-size: 13px;
+      color: var(--ink-3);
+      line-height: 1.7;
     }
 
-    /* ===========================
-       ANIMAIS
-    =========================== */
+    /* ─── ANIMALS SECTION ─── */
     .animals-section {
-      background: var(--bg-warm);
-      padding: 6rem 0;
+      background: var(--mist);
+      padding: 7rem 0;
     }
 
     .animals-header {
@@ -474,53 +606,60 @@
 
     .filter-pills {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
+      background: var(--white);
+      padding: 4px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--mist-2);
     }
 
     .filter-pill {
-      background: var(--bg-card);
-      border: 1px solid var(--border-md);
-      border-radius: 30px;
-      padding: 6px 16px;
-      font-size: 13px;
-      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-radius: var(--r-sm);
+      padding: 8px 16px;
+      font-size: 12px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      color: var(--ink-3);
       cursor: pointer;
       transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.3px;
     }
-    .filter-pill:hover,
+    .filter-pill:hover { color: var(--ink); background: var(--mist); }
     .filter-pill.active {
-      background: var(--teal);
-      color: #fff;
-      border-color: var(--teal);
+      background: var(--ink);
+      color: var(--white);
     }
 
     .animals-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.25rem;
     }
 
     .animal-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid var(--mist-2);
+      border-radius: var(--r-lg);
       overflow: hidden;
-      transition: transform 0.22s, box-shadow 0.22s;
+      transition: all 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+      cursor: default;
     }
     .animal-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 64px rgba(10,10,15,0.12);
+      border-color: var(--mist-3);
     }
 
     .animal-img {
       width: 100%;
-      height: 210px;
+      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 5.5rem;
+      font-size: 5rem;
       position: relative;
       overflow: hidden;
     }
@@ -529,61 +668,63 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      background: rgba(253,252,250,0.92);
+      border: 1px solid var(--mist-2);
+      border-radius: 100px;
       padding: 4px 12px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--ink);
     }
 
     .animal-status {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: var(--teal);
-      color: #fff;
-      border-radius: 20px;
+      background: var(--sage);
+      color: var(--white);
+      border-radius: 100px;
       padding: 4px 12px;
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    .animal-body {
-      padding: 1.35rem;
-    }
+    .animal-body { padding: 1.5rem; }
 
     .animal-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
 
     .animal-meta {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
     }
 
     .pill {
-      background: var(--bg-warm);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      background: var(--mist);
+      border: 1px solid var(--mist-2);
+      border-radius: 100px;
       padding: 3px 10px;
-      font-size: 12px;
-      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-3);
     }
 
     .animal-desc {
       font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      font-weight: 300;
-      margin-bottom: 1rem;
+      color: var(--ink-3);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
     }
 
     .animal-footer {
@@ -591,202 +732,207 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--mist);
     }
 
     .contact-info {
-      font-size: 13px;
-      color: var(--teal);
-      font-weight: 500;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sage);
     }
 
     .btn-adotar {
-      background: var(--teal);
-      color: #fff;
+      background: var(--ink);
+      color: var(--white);
       border: none;
-      border-radius: 20px;
-      padding: 7px 18px;
-      font-size: 13px;
-      font-family: 'DM Sans', sans-serif;
+      border-radius: var(--r-sm);
+      padding: 8px 18px;
+      font-size: 12px;
+      font-family: 'Syne', sans-serif;
       cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s, transform 0.15s;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: all 0.2s;
     }
     .btn-adotar:hover {
-      background: var(--teal-dark);
-      transform: scale(1.04);
+      background: var(--sage-dark);
+      transform: scale(1.03);
     }
 
     .empty-state {
       text-align: center;
       padding: 3rem;
-      color: var(--text-muted);
+      color: var(--ink-3);
       display: none;
     }
 
-    /* ===========================
-       MAPA
-    =========================== */
-    .map-section { padding: 6rem 0; }
+    /* ─── MAPA ─── */
+    .map-section { padding: 7rem 0; }
 
     .map-wrapper {
       margin-top: 3rem;
-      border-radius: var(--radius-xl);
+      border-radius: var(--r-xl);
       overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--bg-warm);
+      border: 1px solid var(--mist-2);
     }
 
-    /* Substitua o src pelo link do seu Google My Maps */
     .map-wrapper iframe {
       width: 100%;
-      height: 480px;
+      height: 500px;
       border: none;
       display: block;
     }
 
     .map-placeholder {
-      height: 480px;
+      height: 500px;
+      background: var(--mist);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.25rem;
       text-align: center;
       padding: 2rem;
       position: relative;
       overflow: hidden;
     }
 
-    /* Pontos animados no placeholder */
+    /* Grid lines on map placeholder */
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--mist-2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--mist-2) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.7;
+    }
+
     .map-dot {
       position: absolute;
-      width: 38px;
-      height: 38px;
-      background: var(--teal);
+      width: 40px;
+      height: 40px;
       border-radius: 50% 50% 50% 0;
       transform: rotate(-45deg);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(29,158,117,0.4);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       animation: dotPulse 2.5s ease-in-out infinite;
     }
-    .map-dot::after {
-      content: attr(data-e);
-      transform: rotate(45deg);
-      font-size: 15px;
-    }
-    .map-dot:nth-child(2) { left: 25%; top: 30%; animation-delay: 0.5s; }
-    .map-dot:nth-child(3) { left: 60%; top: 45%; background: var(--amber); animation-delay: 1s; }
-    .map-dot:nth-child(4) { left: 75%; top: 20%; background: var(--coral); animation-delay: 1.5s; }
-    .map-dot:nth-child(5) { left: 40%; top: 65%; animation-delay: 0.8s; }
+    .map-dot:nth-child(2) { background: var(--sage); left: 25%; top: 30%; animation-delay: 0.5s; }
+    .map-dot:nth-child(3) { background: var(--gold); left: 60%; top: 45%; animation-delay: 1s; }
+    .map-dot:nth-child(4) { background: var(--rust); left: 75%; top: 22%; animation-delay: 1.5s; }
+    .map-dot:nth-child(5) { background: var(--sage); left: 40%; top: 65%; animation-delay: 0.8s; }
+    .map-dot::after { content: attr(data-e); transform: rotate(45deg); font-size: 14px; }
 
     .map-placeholder h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
       position: relative;
       z-index: 1;
+      color: var(--ink);
     }
     .map-placeholder p {
       font-size: 14px;
-      color: var(--text-muted);
+      color: var(--ink-3);
       max-width: 420px;
       position: relative;
       z-index: 1;
-      font-weight: 300;
+      line-height: 1.7;
     }
-    .map-placeholder .btn {
-      position: relative;
-      z-index: 1;
-      margin-top: 0.5rem;
+    .map-placeholder .btn { position: relative; z-index: 1; margin-top: 0.5rem; }
+
+    /* ─── COMO AJUDAR ─── */
+    .help-section { padding: 7rem 0; background: var(--ink); }
+
+    .help-section .label-tag {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: var(--sage-light);
     }
 
-    /* ===========================
-       COMO AJUDAR
-    =========================== */
-    .help-section {
-      background: var(--bg-warm);
-      padding: 6rem 0;
-    }
+    .help-section .display { color: var(--white); }
+
+    .help-section .section-sub { color: rgba(255,255,255,0.5); }
 
     .help-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 3.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 4rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      overflow: hidden;
     }
 
     .help-card {
-      border-radius: var(--radius-lg);
-      padding: 2.25rem 2rem;
-      border: 1px solid transparent;
-      transition: transform 0.22s, box-shadow 0.22s;
-    }
-    .help-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-sm);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: background 0.3s;
     }
 
-    .help-card.adoptar { background: var(--teal-light); border-color: rgba(159,225,203,0.4); }
-    .help-card.temporario { background: var(--amber-light); border-color: rgba(250,199,117,0.4); }
-    .help-card.divulgar { background: var(--coral-light); border-color: rgba(245,196,179,0.4); }
+    .help-card.adoptar  { background: rgba(92,122,94,0.15); border-right: 1px solid rgba(255,255,255,0.08); }
+    .help-card.temporario { background: rgba(201,168,76,0.1); border-right: 1px solid rgba(255,255,255,0.08); }
+    .help-card.divulgar { background: rgba(184,92,56,0.1); }
+
+    .help-card:hover { filter: brightness(1.15); }
 
     .help-icon {
-      font-size: 2.8rem;
-      margin-bottom: 1.25rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
       display: block;
     }
 
     .help-card h3 {
-      font-size: 1.15rem;
-      font-weight: 500;
-      margin-bottom: 0.6rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
     }
 
     .help-card p {
-      font-size: 14px;
-      line-height: 1.7;
-      opacity: 0.75;
-      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.75rem;
     }
 
     .help-card .btn {
-      margin-top: 1.5rem;
-      font-size: 13px;
-      padding: 8px 18px;
+      font-size: 12px;
+      padding: 9px 18px;
     }
-    .help-card.adoptar .btn { background: var(--teal); color: #fff; }
-    .help-card.adoptar .btn:hover { background: var(--teal-dark); }
-    .help-card.temporario .btn { background: var(--amber); color: var(--text); }
-    .help-card.temporario .btn:hover { background: var(--amber-dark); color: #fff; }
-    .help-card.divulgar .btn { background: var(--coral); color: #fff; }
-    .help-card.divulgar .btn:hover { background: #993C1D; }
+    .help-card.adoptar   .btn { background: var(--sage); color: var(--white); border-radius: var(--r-sm); }
+    .help-card.temporario .btn { background: var(--gold); color: var(--ink); border-radius: var(--r-sm); }
+    .help-card.divulgar  .btn { background: var(--rust); color: var(--white); border-radius: var(--r-sm); }
+    .help-card .btn:hover { opacity: 0.88; transform: translateY(-2px); }
 
-    /* ===========================
-       FORMULÁRIO / CADASTRO
-    =========================== */
-    .form-section { padding: 6rem 0; }
+    /* ─── FORM SECTION ─── */
+    .form-section { padding: 7rem 0; }
 
     .form-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
       align-items: center;
-      margin-top: 3rem;
+      margin-top: 4rem;
     }
 
     .form-info h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
       margin-bottom: 1rem;
+      color: var(--ink);
     }
     .form-info p {
       font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.75;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
+      color: var(--ink-3);
+      line-height: 1.8;
+      margin-bottom: 2rem;
     }
 
     .form-checklist {
@@ -798,181 +944,153 @@
     .form-checklist li {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-3);
     }
     .check-icon {
       width: 22px;
       height: 22px;
-      background: var(--teal-light);
+      background: var(--sage-pale);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
+      color: var(--sage-dark);
+      font-weight: 700;
       flex-shrink: 0;
     }
 
     .form-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
+      background: var(--white);
+      border: 1px solid var(--mist-2);
+      border-radius: var(--r-xl);
       padding: 2.5rem;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 16px 48px rgba(10,10,15,0.07);
     }
 
     .form-card h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Fraunces', serif;
       font-size: 1.35rem;
       font-weight: 700;
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--mist-2);
+      color: var(--ink);
     }
 
-    .form-group {
-      margin-bottom: 1.15rem;
-    }
+    .form-group { margin-bottom: 1.15rem; }
 
     .form-group label {
       display: block;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 7px;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      border: 1px solid var(--border-md);
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
-      font-family: 'DM Sans', sans-serif;
+      border: 1.5px solid var(--mist-2);
+      border-radius: var(--r-sm);
+      padding: 11px 14px;
+      font-family: 'Syne', sans-serif;
       font-size: 14px;
-      color: var(--text);
-      background: var(--bg);
+      color: var(--ink);
+      background: var(--white);
       transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
     }
-
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--teal);
-      box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(92,122,94,0.12);
     }
+    .form-group textarea { resize: vertical; min-height: 90px; }
 
-    .form-group textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
     .form-note {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 0.75rem;
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-top: 1rem;
       text-align: center;
-      font-weight: 300;
+      opacity: 0.7;
     }
 
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-    }
-    .form-success .success-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .form-success h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-    .form-success p {
-      font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 300;
-    }
+    .form-success { display: none; text-align: center; padding: 2rem; }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .form-success h4 { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .form-success p { font-size: 14px; color: var(--ink-3); }
 
-    /* ===========================
-       FORMULÁRIOS ADOÇÃO / LAR TEMP
-    =========================== */
-    .interest-section {
-      background: var(--bg-warm);
-      padding: 6rem 0;
-    }
+    /* ─── INTEREST SECTION ─── */
+    .interest-section { background: var(--mist); padding: 7rem 0; }
 
     .interest-tabs {
       display: flex;
       gap: 0;
-      margin-top: 3rem;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      margin-top: 3.5rem;
+      border-radius: var(--r-md) var(--r-md) 0 0;
       overflow: hidden;
-      border: 1px solid var(--border-md);
+      border: 1px solid var(--mist-2);
       border-bottom: none;
     }
 
     .interest-tab {
       flex: 1;
       padding: 1.1rem 1.5rem;
-      background: var(--bg-card);
+      background: var(--white);
       border: none;
       cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-3);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       transition: all 0.22s;
-      border-right: 1px solid var(--border-md);
+      border-right: 1px solid var(--mist-2);
       position: relative;
+      letter-spacing: 0.3px;
     }
     .interest-tab:last-child { border-right: none; }
     .interest-tab::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 3px;
+      height: 2px;
       background: transparent;
       transition: background 0.22s;
     }
-    .interest-tab.active {
-      color: var(--text);
-      background: var(--bg);
-    }
-    .interest-tab.active.tab-adopt::after { background: var(--teal); }
-    .interest-tab.active.tab-temp::after  { background: var(--amber); }
+    .interest-tab.active { color: var(--ink); background: var(--mist); }
+    .interest-tab.active.tab-adopt::after { background: var(--sage); }
+    .interest-tab.active.tab-temp::after  { background: var(--gold); }
 
-    .interest-tab .tab-icon {
-      font-size: 1.3rem;
-    }
+    .interest-tab .tab-icon { font-size: 1.2rem; }
     .interest-tab .tab-badge {
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       padding: 2px 8px;
-      border-radius: 12px;
-      font-weight: 500;
+      border-radius: 100px;
     }
-    .tab-adopt .tab-badge { background: var(--teal-light); color: var(--teal-dark); }
-    .tab-temp  .tab-badge { background: var(--amber-light); color: var(--amber-dark); }
+    .tab-adopt .tab-badge { background: var(--sage-pale); color: var(--sage-dark); }
+    .tab-temp  .tab-badge { background: var(--gold-light); color: var(--gold-dark); }
 
     .interest-panels {
-      border: 1px solid var(--border-md);
-      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-      background: var(--bg);
-      padding: 2.5rem;
+      border: 1px solid var(--mist-2);
+      border-radius: 0 0 var(--r-xl) var(--r-xl);
+      background: var(--white);
+      padding: 3rem;
     }
 
     .interest-panel { display: none; }
@@ -980,102 +1098,61 @@
 
     .interest-layout {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
       align-items: start;
     }
 
     .interest-info h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 0.75rem;
+      color: var(--ink);
     }
     .interest-info p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.75;
-      font-weight: 300;
+      font-size: 13px;
+      color: var(--ink-3);
+      line-height: 1.8;
       margin-bottom: 1.5rem;
     }
 
     .info-highlight {
-      border-radius: var(--radius-md);
+      border-radius: var(--r-md);
       padding: 1.25rem 1.5rem;
       margin-bottom: 1.25rem;
     }
-    .info-highlight.teal { background: var(--teal-light); border-left: 3px solid var(--teal); }
-    .info-highlight.amber { background: var(--amber-light); border-left: 3px solid var(--amber); }
+    .info-highlight.teal { background: var(--sage-pale); border-left: 3px solid var(--sage); }
+    .info-highlight.amber { background: var(--gold-light); border-left: 3px solid var(--gold); }
+    .info-highlight p { font-size: 13px; margin: 0; color: var(--ink); opacity: 0.9; }
 
-    .info-highlight p {
-      font-size: 13px;
-      margin: 0;
-      color: var(--text);
-      opacity: 0.9;
-    }
-
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
     .checkbox-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-      cursor: pointer;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--ink-3); cursor: pointer; font-weight: 500;
     }
     .checkbox-item input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--teal);
-      cursor: pointer;
-      flex-shrink: 0;
+      width: 16px; height: 16px;
+      accent-color: var(--sage); cursor: pointer; flex-shrink: 0;
     }
 
-    .radio-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .radio-group { display: flex; flex-direction: column; gap: 10px; }
     .radio-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-      cursor: pointer;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--ink-3); cursor: pointer; font-weight: 500;
     }
     .radio-item input[type="radio"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--teal);
-      cursor: pointer;
-      flex-shrink: 0;
+      width: 16px; height: 16px;
+      accent-color: var(--sage); cursor: pointer; flex-shrink: 0;
     }
-    .radio-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
+    .radio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-    .btn-adopt  { background: var(--teal); color: #fff; }
-    .btn-adopt:hover  { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(29,158,117,0.25); }
-    .btn-amber-form { background: var(--amber); color: var(--text); font-weight: 600; }
-    .btn-amber-form:hover { background: var(--amber-dark); color: #fff; transform: translateY(-2px); }
+    .btn-adopt { background: var(--sage); color: var(--white); border-radius: var(--r-sm); }
+    .btn-adopt:hover { background: var(--sage-dark); transform: translateY(-2px); }
+    .btn-amber-form { background: var(--gold); color: var(--ink); font-weight: 700; border-radius: var(--r-sm); }
+    .btn-amber-form:hover { background: var(--gold-dark); color: var(--white); transform: translateY(-2px); }
 
-    @media (max-width: 768px) {
-      .interest-layout { grid-template-columns: 1fr; gap: 2rem; }
-      .interest-tab { font-size: 13px; padding: 1rem; }
-      .interest-panels { padding: 1.5rem; }
-      .radio-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ===========================
-       SELETOR DE ANIMAL (adoção/lar temp)
-    =========================== */
+    /* ─── ANIMAL CHOOSER ─── */
     .animal-choice-toggle {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1084,27 +1161,22 @@
     }
 
     .choice-btn {
-      border: 1.5px solid var(--border-md);
-      border-radius: var(--radius-md);
-      padding: 14px 12px;
+      border: 1.5px solid var(--mist-2);
+      border-radius: var(--r-md);
+      padding: 16px 14px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
-      background: var(--bg);
-      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      font-family: 'Syne', sans-serif;
     }
-    .choice-btn:hover { border-color: var(--teal); }
-    .choice-btn.selected-adopt {
-      border-color: var(--teal);
-      background: var(--teal-light);
-    }
-    .choice-btn.selected-temp {
-      border-color: var(--amber);
-      background: var(--amber-light);
-    }
-    .choice-btn .choice-icon { font-size: 1.6rem; display: block; margin-bottom: 5px; }
-    .choice-btn .choice-label { font-size: 13px; font-weight: 500; color: var(--text); }
-    .choice-btn .choice-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .choice-btn:hover { border-color: var(--sage); }
+    .choice-btn.selected-adopt { border-color: var(--sage); background: var(--sage-pale); }
+    .choice-btn.selected-temp  { border-color: var(--gold); background: var(--gold-light); }
+
+    .choice-btn .choice-icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+    .choice-btn .choice-label { font-size: 13px; font-weight: 700; color: var(--ink); }
+    .choice-btn .choice-sub   { font-size: 11px; color: var(--ink-3); margin-top: 3px; }
 
     .animal-list-grid {
       display: grid;
@@ -1114,34 +1186,29 @@
     }
 
     .animal-select-card {
-      border: 1.5px solid var(--border-md);
-      border-radius: var(--radius-md);
+      border: 1.5px solid var(--mist-2);
+      border-radius: var(--r-md);
       padding: 10px 12px;
       cursor: pointer;
       transition: all 0.2s;
       display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--bg);
+      background: var(--white);
     }
-    .animal-select-card:hover { border-color: var(--teal); }
-    .animal-select-card.selected {
-      border-color: var(--teal);
-      background: var(--teal-light);
-    }
-    .animal-select-card.selected-temp {
-      border-color: var(--amber);
-      background: var(--amber-light);
-    }
+    .animal-select-card:hover { border-color: var(--sage); }
+    .animal-select-card.selected      { border-color: var(--sage); background: var(--sage-pale); }
+    .animal-select-card.selected-temp { border-color: var(--gold); background: var(--gold-light); }
+
     .animal-select-card input[type="radio"],
     .animal-select-card input[type="checkbox"] {
-      accent-color: var(--teal);
-      width: 15px; height: 15px;
-      flex-shrink: 0;
+      accent-color: var(--sage);
+      width: 15px; height: 15px; flex-shrink: 0;
     }
+
     .animal-card-mini { flex: 1; }
-    .animal-card-mini .mini-name { font-size: 13px; font-weight: 500; color: var(--text); }
-    .animal-card-mini .mini-info { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .animal-card-mini .mini-name  { font-size: 13px; font-weight: 700; color: var(--ink); }
+    .animal-card-mini .mini-info  { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
     .animal-card-mini .mini-emoji { font-size: 1.4rem; }
 
     .collapsible-section {
@@ -1150,147 +1217,145 @@
       transition: max-height 0.4s ease, opacity 0.3s ease;
       opacity: 0;
     }
-    .collapsible-section.open {
-      max-height: 800px;
-      opacity: 1;
+    .collapsible-section.open { max-height: 800px; opacity: 1; }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: var(--sage-dark);
+      text-align: center;
+      padding: 8rem 2rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ===========================
-       CTA SECTION
-    =========================== */
-    .cta-section {
-      background: var(--teal-deep);
-      color: #fff;
-      text-align: center;
-      padding: 7rem 2rem;
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.15) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .cta-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.12;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
       max-width: 680px;
       margin: 0 auto 1.25rem;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-section p {
-      font-size: 1.05rem;
-      opacity: 0.7;
-      max-width: 460px;
-      margin: 0 auto 2.75rem;
-      font-weight: 300;
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      max-width: 440px;
+      margin: 0 auto 3rem;
+      position: relative;
+      z-index: 1;
     }
 
-    /* ===========================
-       FOOTER
-    =========================== */
+    .cta-section .btn { position: relative; z-index: 1; }
+
+    /* ─── FOOTER ─── */
     footer {
-      background: var(--text);
-      color: rgba(255,255,255,0.55);
-      padding: 3.5rem 2rem;
+      background: var(--ink-2);
+      padding: 4rem 2rem 2rem;
     }
 
     .footer-inner {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 2rem;
+      gap: 3rem;
       flex-wrap: wrap;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .footer-brand .logo {
-      color: #fff;
-      font-size: 20px;
-      margin-bottom: 0.75rem;
-    }
+    .footer-brand .logo { color: var(--white); margin-bottom: 1rem; }
 
     .footer-brand p {
       font-size: 13px;
+      color: rgba(255,255,255,0.4);
       line-height: 1.7;
-      max-width: 280px;
+      max-width: 260px;
     }
 
     .footer-links h4 {
-      color: #fff;
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
       margin-bottom: 1rem;
-      letter-spacing: 0.5px;
     }
 
-    .footer-links ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 
     .footer-links ul a {
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
       text-decoration: none;
       transition: color 0.2s;
+      font-weight: 500;
     }
-    .footer-links ul a:hover { color: var(--amber); }
+    .footer-links ul a:hover { color: var(--gold); }
 
     .footer-bottom {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 2rem auto 0;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
       font-size: 12px;
+      color: rgba(255,255,255,0.25);
     }
 
-    .footer-bottom a {
-      color: var(--amber);
-      text-decoration: none;
-    }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
 
-    /* ===========================
-       ANIMAÇÕES
-    =========================== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50%       { opacity: 0.9; transform: scaleY(1.2); }
-    }
-
-    @keyframes dotPulse {
-      0%, 100% { transform: rotate(-45deg) scale(1); }
-      50%       { transform: rotate(-45deg) scale(1.15); }
-    }
-
-    /* Reveal on scroll */
+    /* ─── REVEAL ─── */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.5); opacity: 0.6; }
+    }
+    @keyframes dotPulse {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      50%       { transform: rotate(-45deg) scale(1.15); }
     }
 
-    /* ===========================
-       RESPONSIVO
-    =========================== */
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin: 0 auto 2.5rem; }
+      .hero-ctas { justify-content: center; }
+      .hero-visual { display: none; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -1299,44 +1364,40 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 66px; left: 0; right: 0;
-        background: var(--bg);
-        border-bottom: 1px solid var(--border);
+        top: 68px; left: 0; right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--mist-2);
         padding: 1.5rem 2rem;
         gap: 1.25rem;
         z-index: 199;
-        animation: fadeDown 0.2s ease;
       }
 
-      .hero { min-height: 80vh; padding: 5rem 1.5rem 4rem; }
-
-      .stat-item { padding: 1.4rem 1.5rem; }
-
-      .form-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
+      .steps-grid { grid-template-columns: 1fr 1fr !important; }
+      .help-grid { grid-template-columns: 1fr; }
+      .help-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .form-layout { grid-template-columns: 1fr; gap: 3rem; }
       .form-row { grid-template-columns: 1fr; }
-
-      .hero-ctas { flex-direction: column; align-items: center; }
-      .hero-ctas .btn { width: 100%; justify-content: center; }
-
+      .interest-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .interest-panels { padding: 1.75rem; }
+      .radio-grid { grid-template-columns: 1fr; }
+      .stat-item { padding: 1.4rem 1.5rem; }
       .footer-inner { flex-direction: column; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========================
-       NAVBAR
-  ======================== -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container">
-      <a href="#" class="logo">🐾 AdotaDF</a>
+      <a href="#" class="logo">
+        <div class="logo-icon">🐾</div>
+        AdotaDF
+      </a>
 
-      <!-- Mobile hamburger -->
       <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
       </div>
@@ -1352,40 +1413,71 @@
     </div>
   </nav>
 
-  <!-- ========================
-       HERO
-  ======================== -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-glow"></div>
-    <!-- Patas decorativas -->
-    <span class="hero-paw">🐾</span>
-    <span class="hero-paw">🐾</span>
-    <span class="hero-paw">🐾</span>
-    <span class="hero-paw">🐾</span>
+    <div class="container" style="display:contents;">
 
-    <div class="hero-badge">🐾 Projeto comunitário — Distrito Federal</div>
+      <div class="hero-content" style="padding: 0 0 0 2rem; max-width: 600px;">
+        <div class="hero-eyebrow">
+          <div class="hero-dot"></div>
+          <span>Projeto comunitário · Distrito Federal</span>
+        </div>
 
-    <h1>Cada animal merece<br>uma <span class="hl">família</span></h1>
+        <h1>
+          Cada animal<br>
+          merece uma<br>
+          <em>família</em> de<br>
+          <span class="underline-gold">verdade.</span>
+        </h1>
 
-    <p class="hero-sub">
-      Plataforma gratuita que conecta animais abandonados do DF com pessoas que querem adotar.
-      Simples, rápido e feito com amor pela comunidade.
-    </p>
+        <p class="hero-sub">
+          Plataforma gratuita que conecta animais abandonados do DF com pessoas que querem adotar.
+          Simples, rápido e feito com amor pela comunidade.
+        </p>
 
-    <div class="hero-ctas">
-      <a href="#cadastrar" class="btn btn-primary">🐶 Cadastrar animal</a>
-      <a href="#animais" class="btn btn-secondary">Ver animais disponíveis →</a>
-    </div>
+        <div class="hero-ctas">
+          <a href="#cadastrar" class="btn btn-dark">🐶 Cadastrar animal</a>
+          <a href="#animais" class="btn btn-outline">Ver animais disponíveis →</a>
+        </div>
+      </div>
 
-    <div class="hero-scroll">
-      <span>role para ver</span>
-      <div class="scroll-line"></div>
+      <div class="hero-visual" style="padding-right: 2rem;">
+        <div class="hero-card-stack">
+          <div class="hero-card-bg"></div>
+          <div class="hero-card-bg"></div>
+
+          <div class="hero-main-card">
+            <div class="hero-card-img" style="background: linear-gradient(135deg, #EBF1EB, #D9D5CC);">
+              🐶
+              <span class="hero-card-badge">Disponível</span>
+            </div>
+            <div class="hero-card-body">
+              <h3>Bolinha</h3>
+              <p>Cachorro · ~2 anos · Asa Sul</p>
+              <div class="hero-card-tags">
+                <span class="hero-tag">Castrado</span>
+                <span class="hero-tag">Médio porte</span>
+                <span class="hero-tag">Vacinado</span>
+              </div>
+              <div class="hero-card-action">
+                <button class="hero-card-btn">Quero adotar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-floating-tag tag-1">
+            <span>🐱</span> Mimi — Taguatinga
+          </div>
+          <div class="hero-floating-tag tag-2">
+            <span style="color:var(--sage);">✓</span> 100% Gratuito
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ========================
-       STATS BAR
-  ======================== -->
+  <!-- STATS BAR -->
   <div class="stats-bar">
     <div class="stat-item">
       <div class="stat-num">100%</div>
@@ -1405,54 +1497,50 @@
     </div>
   </div>
 
-  <!-- ========================
-       COMO FUNCIONA
-  ======================== -->
+  <!-- COMO FUNCIONA -->
   <section class="section-pad" id="como-funciona">
     <div class="container">
-      <span class="section-label reveal">Como funciona</span>
-      <h2 class="section-title reveal">Do abandono ao lar em 5 passos</h2>
-      <p class="section-sub reveal">Sem burocracia, sem custo. Qualquer pessoa pode ajudar um animal a encontrar uma nova família.</p>
+      <span class="label-tag reveal">Como funciona</span>
+      <h2 class="display reveal" style="font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 0.5rem;">Do abandono ao lar</h2>
+      <p class="body-text reveal" style="max-width:520px; margin-top: 1rem;">Sem burocracia, sem custo. Qualquer pessoa pode ajudar um animal a encontrar uma nova família.</p>
 
-      <div class="steps-grid">
-        <div class="step-card reveal">
+      <div class="steps-grid reveal" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="step-card">
           <div class="step-num">01</div>
           <h3>Encontrei um animal</h3>
-          <p>Você encontrou um animal abandonado nas ruas do DF e quer ajudar a encontrar um lar.</p>
+          <p>Você encontrou um animal abandonado nas ruas do DF e quer ajudar.</p>
         </div>
-        <div class="step-card reveal">
+        <div class="step-card">
           <div class="step-num">02</div>
           <h3>Acesso o site</h3>
-          <p>Abre o AdotaDF em qualquer celular, sem precisar criar conta ou instalar nada.</p>
+          <p>Abre o AdotaDF em qualquer celular, sem criar conta ou instalar nada.</p>
         </div>
-        <div class="step-card reveal">
+        <div class="step-card">
           <div class="step-num">03</div>
           <h3>Preencho o formulário</h3>
-          <p>Nome, tipo, idade, foto e contato. Todo o cadastro leva menos de 2 minutos.</p>
+          <p>Nome, tipo, idade, foto e contato — leva menos de 2 minutos.</p>
         </div>
-        <div class="step-card reveal">
+        <div class="step-card">
           <div class="step-num">04</div>
           <h3>Animal entra no mapa</h3>
-          <p>Os dados vão direto para a plataforma e o animal aparece visível no mapa do DF.</p>
+          <p>Os dados vão direto para a plataforma e o animal aparece no mapa do DF.</p>
         </div>
-        <div class="step-card reveal">
+        <div class="step-card">
           <div class="step-num">05</div>
           <h3>Família encontrada!</h3>
-          <p>Quem quer adotar vê o animal, entra em contato com o responsável e a história muda.</p>
+          <p>Quem quer adotar vê o animal, entra em contato e a história muda.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========================
-       ANIMAIS DISPONÍVEIS
-  ======================== -->
+  <!-- ANIMAIS DISPONÍVEIS -->
   <section class="animals-section" id="animais">
     <div class="container">
       <div class="animals-header">
         <div>
-          <span class="section-label reveal">Animais disponíveis</span>
-          <h2 class="section-title reveal">Esperando por você no DF</h2>
+          <span class="label-tag reveal">Animais disponíveis</span>
+          <h2 class="display reveal" style="font-size: clamp(1.8rem, 3.5vw, 2.75rem);">Esperando por você no DF</h2>
         </div>
         <div class="filter-pills reveal">
           <button class="filter-pill active" onclick="filterAnimals('todos', this)">Todos</button>
@@ -1463,9 +1551,8 @@
 
       <div class="animals-grid" id="animalsGrid">
 
-        <!-- Animal 1 -->
         <div class="animal-card reveal" data-tipo="cachorro">
-          <div class="animal-img" style="background: #FFF3E0;">
+          <div class="animal-img" style="background: linear-gradient(135deg,#EBF1EB,#c8dac9);">
             🐶
             <div class="animal-tag">Cachorro</div>
             <div class="animal-status">Disponível</div>
@@ -1485,9 +1572,8 @@
           </div>
         </div>
 
-        <!-- Animal 2 -->
         <div class="animal-card reveal" data-tipo="gato">
-          <div class="animal-img" style="background: #F3E5F5;">
+          <div class="animal-img" style="background: linear-gradient(135deg,#F5E8E2,#e8c9ba);">
             🐱
             <div class="animal-tag">Gato</div>
             <div class="animal-status">Disponível</div>
@@ -1507,9 +1593,8 @@
           </div>
         </div>
 
-        <!-- Animal 3 -->
         <div class="animal-card reveal" data-tipo="cachorro">
-          <div class="animal-img" style="background: #E8F5E9;">
+          <div class="animal-img" style="background: linear-gradient(135deg,#F5EBD0,#e0d0a0);">
             🐶
             <div class="animal-tag">Cachorro</div>
             <div class="animal-status">Disponível</div>
@@ -1529,9 +1614,8 @@
           </div>
         </div>
 
-        <!-- Animal 4 -->
         <div class="animal-card reveal" data-tipo="gato">
-          <div class="animal-img" style="background: #E3F2FD;">
+          <div class="animal-img" style="background: linear-gradient(135deg,#EAE7E0,#cfcabd);">
             🐱
             <div class="animal-tag">Gato</div>
             <div class="animal-status">Disponível</div>
@@ -1551,9 +1635,8 @@
           </div>
         </div>
 
-        <!-- Animal 5 -->
         <div class="animal-card reveal" data-tipo="cachorro">
-          <div class="animal-img" style="background: #FFF8E1;">
+          <div class="animal-img" style="background: linear-gradient(135deg,#EBF1EB,#b8cebc);">
             🐶
             <div class="animal-tag">Cachorro</div>
             <div class="animal-status">Disponível</div>
@@ -1573,9 +1656,8 @@
           </div>
         </div>
 
-        <!-- Animal 6 -->
         <div class="animal-card reveal" data-tipo="gato">
-          <div class="animal-img" style="background: #FCE4EC;">
+          <div class="animal-img" style="background: linear-gradient(135deg,#F5E8E2,#d4b0a0);">
             🐱
             <div class="animal-tag">Gato</div>
             <div class="animal-status">Disponível</div>
@@ -1595,39 +1677,25 @@
           </div>
         </div>
 
-      </div><!-- /animals-grid -->
+      </div>
 
       <div class="empty-state" id="emptyState">
         <p style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</p>
         <p>Nenhum animal encontrado com esse filtro.</p>
       </div>
-
     </div>
   </section>
 
-  <!-- ========================
-       MAPA
-  ======================== -->
+  <!-- MAPA -->
   <section class="map-section" id="mapa">
     <div class="container">
-      <span class="section-label reveal">Mapa de adoção</span>
-      <h2 class="section-title reveal">Onde estão os animais</h2>
-      <p class="section-sub reveal">
-        Cada marcador é um animal esperando por um lar no DF.
-        Integrado com Google My Maps — gratuito e sem servidor.
+      <span class="label-tag reveal">Mapa de adoção</span>
+      <h2 class="display reveal" style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); margin-bottom: 0.5rem;">Onde estão os animais</h2>
+      <p class="body-text reveal" style="max-width:520px; margin-top: 1rem;">
+        Cada marcador é um animal esperando por um lar no DF. Integrado com Google My Maps — gratuito e sem servidor.
       </p>
 
       <div class="map-wrapper reveal">
-
-        <!--
-          ✅ COMO ATIVAR O MAPA:
-          1. Acesse mymaps.google.com e crie um mapa com os dados dos animais
-          2. Clique em "Compartilhar" → "Incorporar no site"
-          3. Copie o link src do iframe gerado
-          4. Substitua o bloco .map-placeholder abaixo por:
-             <iframe src="SEU_LINK_AQUI" allowfullscreen></iframe>
-        -->
-
         <div class="map-placeholder">
           <div class="map-dot" data-e="🐶" style="left:28%; top:35%;"></div>
           <div class="map-dot" data-e="🐱" style="left:58%; top:50%;"></div>
@@ -1639,42 +1707,37 @@
           <p>
             Aqui será exibido o Google My Maps com todos os animais disponíveis para adoção em tempo real.
             <br><br>
-            <strong>Para configurar:</strong> crie um mapa no Google My Maps e cole o link do iframe acima no código.
+            <strong>Para configurar:</strong> crie um mapa no Google My Maps e cole o link do iframe no código.
           </p>
-          <a href="https://mymaps.google.com" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="https://mymaps.google.com" target="_blank" rel="noopener" class="btn btn-dark">
             Criar mapa no Google My Maps →
           </a>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========================
-       COMO AJUDAR
-  ======================== -->
+  <!-- COMO AJUDAR -->
   <section class="help-section" id="ajudar">
     <div class="container">
-      <span class="section-label reveal">Como ajudar</span>
-      <h2 class="section-title reveal">Existem muitas formas<br>de fazer a diferença</h2>
-      <p class="section-sub reveal">Você não precisa adotar para salvar uma vida. Cada pequena ação conta.</p>
+      <span class="label-tag reveal">Como ajudar</span>
+      <h2 class="display reveal" style="font-size: clamp(2rem, 4vw, 3.25rem); color: var(--white); margin-bottom: 0.5rem;">Muitas formas de fazer<br>a diferença</h2>
+      <p class="body-text reveal section-sub" style="max-width:480px; margin-top: 1rem; color: rgba(255,255,255,0.5);">Você não precisa adotar para salvar uma vida. Cada pequena ação conta.</p>
 
-      <div class="help-grid">
-        <div class="help-card adoptar reveal">
+      <div class="help-grid reveal">
+        <div class="help-card adoptar">
           <span class="help-icon">🏠</span>
           <h3>Adotar</h3>
           <p>Abra sua casa para um animal que precisa de amor. A adoção responsável transforma duas vidas: a sua e a dele.</p>
           <a href="#quero-ajudar" class="btn" onclick="openTab('adopt')">Quero adotar</a>
         </div>
-
-        <div class="help-card temporario reveal">
+        <div class="help-card temporario">
           <span class="help-icon">⏳</span>
           <h3>Ser lar temporário</h3>
           <p>Não pode adotar definitivamente? Cuide de um animal por um tempo enquanto ele não encontra um lar permanente.</p>
           <a href="#quero-ajudar" class="btn" onclick="openTab('temp')">Quero ser lar temporário</a>
         </div>
-
-        <div class="help-card divulgar reveal">
+        <div class="help-card divulgar">
           <span class="help-icon">📣</span>
           <h3>Divulgar</h3>
           <p>Compartilhe os animais nas redes sociais. Um repost pode ser a virada de vida de um bichinho que precisa de um lar.</p>
@@ -1684,17 +1747,13 @@
     </div>
   </section>
 
-  <!-- ========================
-       CADASTRO DE ANIMAL
-  ======================== -->
+  <!-- CADASTRO DE ANIMAL -->
   <section class="form-section" id="cadastrar">
     <div class="container">
-      <span class="section-label reveal">Cadastrar animal</span>
-      <h2 class="section-title reveal">Encontrou um animal?<br>Registre agora</h2>
+      <span class="label-tag reveal">Cadastrar animal</span>
+      <h2 class="display reveal" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem;">Encontrou um animal?<br>Registre agora</h2>
 
       <div class="form-layout">
-
-        <!-- Info lateral -->
         <div class="form-info reveal">
           <h3>Por que cadastrar?</h3>
           <p>
@@ -1710,10 +1769,8 @@
           </ul>
         </div>
 
-        <!-- Formulário -->
         <div class="form-card reveal">
           <h3>🐾 Cadastrar animal para adoção</h3>
-
           <div id="formContent">
             <div class="form-group">
               <label for="animalNome">Nome do animal *</label>
@@ -1773,44 +1830,33 @@
               <input type="url" id="animalFoto" placeholder="Cole aqui o link da foto (Google Drive, Imgur, etc.)" />
             </div>
 
-            <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 13px;" onclick="submitForm()">
+            <button class="btn btn-sage" style="width:100%; justify-content:center; padding: 14px;" onclick="submitForm()">
               🐾 Cadastrar animal
             </button>
 
             <p class="form-note">
-              Ao cadastrar, você concorda que as informações serão compartilhadas
-              publicamente para facilitar a adoção.
+              Ao cadastrar, você concorda que as informações serão compartilhadas publicamente para facilitar a adoção.
             </p>
           </div>
 
-          <!-- Sucesso -->
           <div class="form-success" id="formSuccess">
             <div class="success-icon">🎉</div>
             <h4>Animal cadastrado com sucesso!</h4>
-            <p>
-              Em breve ele aparecerá no mapa e na lista de animais disponíveis.
-              Obrigado por ajudar a mudar uma vida!
-            </p>
-            <button class="btn btn-primary" style="margin: 1.5rem auto 0;" onclick="resetForm()">
-              Cadastrar outro animal
-            </button>
+            <p>Em breve ele aparecerá no mapa e na lista de animais disponíveis. Obrigado por ajudar a mudar uma vida!</p>
+            <button class="btn btn-sage" style="margin: 1.5rem auto 0;" onclick="resetForm()">Cadastrar outro animal</button>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========================
-       FORMULÁRIOS: ADOTAR / LAR TEMP
-  ======================== -->
+  <!-- FORMULÁRIOS: ADOTAR / LAR TEMP -->
   <section class="interest-section" id="quero-ajudar">
     <div class="container">
-      <span class="section-label reveal">Quero ajudar</span>
-      <h2 class="section-title reveal">Você quer adotar ou ser<br>lar temporário?</h2>
-      <p class="section-sub reveal">Preencha o formulário abaixo e entraremos em contato com animais compatíveis com o seu perfil.</p>
+      <span class="label-tag reveal">Quero ajudar</span>
+      <h2 class="display reveal" style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); margin-bottom: 0.5rem;">Você quer adotar ou ser<br>lar temporário?</h2>
+      <p class="body-text reveal" style="max-width:500px; margin-top: 1rem;">Preencha o formulário abaixo e entraremos em contato com animais compatíveis com o seu perfil.</p>
 
-      <!-- Abas -->
       <div class="interest-tabs reveal">
         <button class="interest-tab tab-adopt active" id="tabAdopt" onclick="openTab('adopt')">
           <span class="tab-icon">🏠</span>
@@ -1824,39 +1870,28 @@
         </button>
       </div>
 
-      <!-- Painéis -->
       <div class="interest-panels reveal">
 
-        <!-- ===== PAINEL: ADOÇÃO ===== -->
+        <!-- PAINEL: ADOÇÃO -->
         <div class="interest-panel active" id="panelAdopt">
           <div class="interest-layout">
-
-            <!-- Info lateral -->
             <div class="interest-info">
               <h3>Adoção responsável começa aqui</h3>
-              <p>
-                Ao preencher este formulário, você entra para nossa lista de adotantes interessados.
-                Quando um animal compatível com o seu perfil for cadastrado, entraremos em contato.
-              </p>
-
+              <p>Ao preencher este formulário, você entra para nossa lista de adotantes. Quando um animal compatível for cadastrado, entraremos em contato.</p>
               <div class="info-highlight teal">
                 <p>🐾 A adoção no AdotaDF é sempre <strong>gratuita</strong>. Nunca pague por um animal!</p>
               </div>
-
               <p>O que esperamos de um adotante responsável:</p>
               <ul class="form-checklist">
-                <li><div class="check-icon" style="background:var(--teal-light);">✓</div> Oferecer ambiente seguro e amoroso</li>
-                <li><div class="check-icon" style="background:var(--teal-light);">✓</div> Comprometer-se com vacinação e saúde</li>
-                <li><div class="check-icon" style="background:var(--teal-light);">✓</div> Não abandonar o animal em nenhuma circunstância</li>
-                <li><div class="check-icon" style="background:var(--teal-light);">✓</div> Permitir visita de acompanhamento (opcional)</li>
+                <li><div class="check-icon">✓</div> Oferecer ambiente seguro e amoroso</li>
+                <li><div class="check-icon">✓</div> Comprometer-se com vacinação e saúde</li>
+                <li><div class="check-icon">✓</div> Não abandonar o animal em nenhuma circunstância</li>
+                <li><div class="check-icon">✓</div> Permitir visita de acompanhamento (opcional)</li>
               </ul>
             </div>
 
-            <!-- Formulário adoção -->
             <div>
               <div id="adoptFormContent">
-
-                <!-- STEP 1: Escolha o animal ou aceite qualquer um -->
                 <div class="form-group">
                   <label>Você tem um animal em mente? *</label>
                   <div class="animal-choice-toggle">
@@ -1873,21 +1908,16 @@
                   </div>
                 </div>
 
-                <!-- Seção: escolher animal específico -->
                 <div class="collapsible-section" id="adoptSpecificSection">
                   <div class="form-group" style="margin-top:4px;">
                     <label>Selecione o animal que você quer adotar *</label>
-                    <div class="animal-list-grid" id="adoptAnimalList">
-                      <!-- Preenchido via JS com os animais disponíveis -->
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
-                      Não encontrou o que procura? Veja todos os animais na seção
-                      <a href="#animais" style="color:var(--teal);">Animais disponíveis</a>.
+                    <div class="animal-list-grid" id="adoptAnimalList"></div>
+                    <p style="font-size:12px; color:var(--ink-3); margin-top:8px;">
+                      Não encontrou? Veja todos em <a href="#animais" style="color:var(--sage);">Animais disponíveis</a>.
                     </p>
                   </div>
                 </div>
 
-                <!-- Seção: preferências quando aceita qualquer animal -->
                 <div class="collapsible-section" id="adoptAnySection">
                   <div class="form-group" style="margin-top:4px;">
                     <label>Qual tipo de animal você prefere?</label>
@@ -1909,13 +1939,11 @@
                   </div>
                 </div>
 
-                <!-- Campos comuns (aparecem após escolha) -->
                 <div class="collapsible-section" id="adoptCommonFields">
                   <div class="form-group" style="margin-top:4px;">
                     <label for="adoptNome">Seu nome completo *</label>
                     <input type="text" id="adoptNome" placeholder="Ex: Maria da Silva" />
                   </div>
-
                   <div class="form-row">
                     <div class="form-group">
                       <label for="adoptContato">WhatsApp *</label>
@@ -1926,7 +1954,6 @@
                       <input type="email" id="adoptEmail" placeholder="seu@email.com" />
                     </div>
                   </div>
-
                   <div class="form-row">
                     <div class="form-group">
                       <label for="adoptCidade">Cidade/Bairro *</label>
@@ -1943,7 +1970,6 @@
                       </select>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Sua situação de moradia *</label>
                     <div class="radio-group" style="margin-top:6px;">
@@ -1953,7 +1979,6 @@
                       <label class="radio-item"><input type="radio" name="adoptMoradia" value="outro"> Outro</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Sua casa já tem outros animais?</label>
                     <div class="checkbox-group" style="margin-top:6px;">
@@ -1962,7 +1987,6 @@
                       <label class="checkbox-item"><input type="checkbox"> Nenhum animal ainda</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Há crianças em casa?</label>
                     <div class="radio-group" style="margin-top:6px;">
@@ -1970,70 +1994,47 @@
                       <label class="radio-item"><input type="radio" name="adoptCriancas" value="nao"> Não</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label for="adoptMotivo">Por que você quer adotar? *</label>
                     <textarea id="adoptMotivo" placeholder="Conte um pouco sobre sua motivação, sua rotina e como será a vida do animal com você..."></textarea>
                   </div>
-
-                  <button class="btn btn-adopt" style="width:100%; justify-content:center; padding:13px; border-radius:50px;" onclick="submitAdopt()">
+                  <button class="btn btn-adopt" style="width:100%; justify-content:center; padding:14px;" onclick="submitAdopt()">
                     🏠 Enviar interesse em adotar
                   </button>
-
-                  <p class="form-note">
-                    Suas informações serão usadas apenas para encontrar o animal mais compatível com você.
-                  </p>
+                  <p class="form-note">Suas informações serão usadas apenas para encontrar o animal mais compatível com você.</p>
                 </div>
-
               </div>
 
-              <!-- Sucesso adoção -->
               <div class="form-success" id="adoptSuccess">
                 <div class="success-icon">🥰</div>
                 <h4>Interesse registrado!</h4>
-                <p>
-                  Muito obrigado! Quando um animal compatível com o seu perfil for cadastrado,
-                  entraremos em contato pelo WhatsApp informado. Você está salvando uma vida!
-                </p>
-                <button class="btn btn-adopt" style="margin: 1.5rem auto 0; border-radius:50px; padding:10px 24px;" onclick="resetAdopt()">
-                  Registrar outro interesse
-                </button>
+                <p>Muito obrigado! Quando um animal compatível for cadastrado, entraremos em contato pelo WhatsApp informado. Você está salvando uma vida!</p>
+                <button class="btn btn-adopt" style="margin: 1.5rem auto 0; padding:10px 24px;" onclick="resetAdopt()">Registrar outro interesse</button>
               </div>
             </div>
-
           </div>
-        </div><!-- /panelAdopt -->
+        </div>
 
-        <!-- ===== PAINEL: LAR TEMPORÁRIO ===== -->
+        <!-- PAINEL: LAR TEMPORÁRIO -->
         <div class="interest-panel" id="panelTemp">
           <div class="interest-layout">
-
-            <!-- Info lateral -->
             <div class="interest-info">
               <h3>Lar temporário salva vidas</h3>
-              <p>
-                O lar temporário é fundamental para animais que precisam de cuidados enquanto aguardam adoção.
-                Você não precisa adotar definitivamente — apenas acolher por um tempo.
-              </p>
-
+              <p>O lar temporário é fundamental para animais que precisam de cuidados enquanto aguardam adoção. Você não precisa adotar definitivamente — apenas acolher por um tempo.</p>
               <div class="info-highlight amber">
                 <p>⏳ A duração média do lar temporário no DF é de <strong>2 a 8 semanas</strong>.</p>
               </div>
-
               <p>O que o lar temporário envolve:</p>
               <ul class="form-checklist">
-                <li><div class="check-icon" style="background:var(--amber-light);">✓</div> Alimentação e cuidados básicos</li>
-                <li><div class="check-icon" style="background:var(--amber-light);">✓</div> Acompanhamento veterinário (apoio da ONG)</li>
-                <li><div class="check-icon" style="background:var(--amber-light);">✓</div> Ajudar a divulgar o animal para adoção</li>
-                <li><div class="check-icon" style="background:var(--amber-light);">✓</div> Suporte da rede AdotaDF durante todo o período</li>
+                <li><div class="check-icon" style="background:var(--gold-light);">✓</div> Alimentação e cuidados básicos</li>
+                <li><div class="check-icon" style="background:var(--gold-light);">✓</div> Acompanhamento veterinário (apoio da ONG)</li>
+                <li><div class="check-icon" style="background:var(--gold-light);">✓</div> Ajudar a divulgar o animal para adoção</li>
+                <li><div class="check-icon" style="background:var(--gold-light);">✓</div> Suporte da rede AdotaDF durante todo o período</li>
               </ul>
             </div>
 
-            <!-- Formulário lar temporário -->
             <div>
               <div id="tempFormContent">
-
-                <!-- STEP 1: Escolha um animal específico ou aceita qualquer um -->
                 <div class="form-group">
                   <label>Você tem um animal em mente? *</label>
                   <div class="animal-choice-toggle">
@@ -2050,22 +2051,17 @@
                   </div>
                 </div>
 
-                <!-- Seção: escolher animal específico (lar temp) -->
                 <div class="collapsible-section" id="tempSpecificSection">
                   <div class="form-group" style="margin-top:4px;">
                     <label>Selecione o(s) animal(is) que você pode acolher *</label>
-                    <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Pode selecionar mais de um.</p>
-                    <div class="animal-list-grid" id="tempAnimalList">
-                      <!-- Preenchido via JS -->
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
-                      Veja mais animais na seção
-                      <a href="#animais" style="color:var(--amber);">Animais disponíveis</a>.
+                    <p style="font-size:12px; color:var(--ink-3); margin-bottom:8px;">Pode selecionar mais de um.</p>
+                    <div class="animal-list-grid" id="tempAnimalList"></div>
+                    <p style="font-size:12px; color:var(--ink-3); margin-top:8px;">
+                      Veja mais em <a href="#animais" style="color:var(--gold-dark);">Animais disponíveis</a>.
                     </p>
                   </div>
                 </div>
 
-                <!-- Seção: preferências quando aceita qualquer animal (lar temp) -->
                 <div class="collapsible-section" id="tempAnySection">
                   <div class="form-group" style="margin-top:4px;">
                     <label>Quais tipos de animais você pode acolher? *</label>
@@ -2087,13 +2083,11 @@
                   </div>
                 </div>
 
-                <!-- Campos comuns lar temporário -->
                 <div class="collapsible-section" id="tempCommonFields">
                   <div class="form-group" style="margin-top:4px;">
                     <label for="tempNome">Seu nome completo *</label>
                     <input type="text" id="tempNome" placeholder="Ex: João Souza" />
                   </div>
-
                   <div class="form-row">
                     <div class="form-group">
                       <label for="tempContato">WhatsApp *</label>
@@ -2104,7 +2098,6 @@
                       <input type="email" id="tempEmail" placeholder="seu@email.com" />
                     </div>
                   </div>
-
                   <div class="form-row">
                     <div class="form-group">
                       <label for="tempCidade">Cidade/Bairro *</label>
@@ -2121,7 +2114,6 @@
                       </select>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Por quanto tempo pode acolher? *</label>
                     <div class="radio-group" style="margin-top:6px;">
@@ -2131,7 +2123,6 @@
                       <label class="radio-item"><input type="radio" name="tempDuracao" value="indefinido"> Até ser adotado (sem prazo)</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Sua situação de moradia *</label>
                     <div class="radio-group" style="margin-top:6px;">
@@ -2140,7 +2131,6 @@
                       <label class="radio-item"><input type="radio" name="tempMoradia" value="apto"> Apartamento</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Há outros animais em casa?</label>
                     <div class="checkbox-group" style="margin-top:6px;">
@@ -2149,7 +2139,6 @@
                       <label class="checkbox-item"><input type="checkbox"> Nenhum</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label>Já foi lar temporário antes?</label>
                     <div class="radio-group" style="margin-top:6px;">
@@ -2157,63 +2146,47 @@
                       <label class="radio-item"><input type="radio" name="tempExp" value="nao"> Não, mas estou disposto(a) a aprender</label>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label for="tempObs">Informações adicionais</label>
                     <textarea id="tempObs" placeholder="Conte sobre sua rotina, restrições ou qualquer informação que ajude a encontrar o match certo..."></textarea>
                   </div>
-
-                  <button class="btn btn-amber-form" style="width:100%; justify-content:center; padding:13px; border-radius:50px;" onclick="submitTemp()">
+                  <button class="btn btn-amber-form" style="width:100%; justify-content:center; padding:14px;" onclick="submitTemp()">
                     ⏳ Quero ser lar temporário
                   </button>
-
-                  <p class="form-note">
-                    Entraremos em contato assim que houver um animal que combine com seu perfil.
-                  </p>
+                  <p class="form-note">Entraremos em contato assim que houver um animal que combine com seu perfil.</p>
                 </div>
-
               </div>
 
-              <!-- Sucesso lar temporário -->
               <div class="form-success" id="tempSuccess">
                 <div class="success-icon">🌟</div>
                 <h4>Incrível! Você é um herói!</h4>
-                <p>
-                  Seu cadastro de lar temporário foi registrado com sucesso.
-                  Entraremos em contato quando houver um animal compatível esperando por um lar como o seu.
-                </p>
-                <button class="btn btn-amber-form" style="margin: 1.5rem auto 0; border-radius:50px; padding:10px 24px;" onclick="resetTemp()">
-                  Atualizar meu cadastro
-                </button>
+                <p>Seu cadastro de lar temporário foi registrado com sucesso. Entraremos em contato quando houver um animal compatível esperando por um lar como o seu.</p>
+                <button class="btn btn-amber-form" style="margin: 1.5rem auto 0; padding:10px 24px;" onclick="resetTemp()">Atualizar meu cadastro</button>
               </div>
             </div>
-
           </div>
-        </div><!-- /panelTemp -->
+        </div>
 
-      </div><!-- /interest-panels -->
+      </div>
     </div>
   </section>
 
-  <!-- ========================
-       CTA FINAL
-  ======================== -->
+  <!-- CTA FINAL -->
   <div class="cta-section">
-    <h2>Um formulário pode salvar uma vida</h2>
+    <h2>Um formulário pode<br>salvar uma vida</h2>
     <p>Leva menos de 2 minutos. Sem cadastro, sem custo. Só amor e comunidade.</p>
-    <a href="#cadastrar" class="btn btn-amber">🐾 Cadastrar animal agora</a>
+    <a href="#cadastrar" class="btn btn-gold">🐾 Cadastrar animal agora</a>
   </div>
 
-  <!-- ========================
-       FOOTER
-  ======================== -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#" class="logo">🐾 AdotaDF</a>
-        <p>
-          Plataforma gratuita e comunitária para conectar animais abandonados do Distrito Federal com famílias amorosas.
-        </p>
+        <a href="#" class="logo">
+          <div class="logo-icon" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1);">🐾</div>
+          AdotaDF
+        </a>
+        <p>Plataforma gratuita e comunitária para conectar animais abandonados do Distrito Federal com famílias amorosas.</p>
       </div>
 
       <div class="footer-links">
@@ -2244,99 +2217,56 @@
     </div>
   </footer>
 
-  <!-- ========================
-       JAVASCRIPT
-  ======================== -->
   <script>
-    /* ---------- Menu mobile ---------- */
+    /* ── Menu mobile ── */
     function toggleMenu() {
-      const nav = document.getElementById('navLinks');
-      nav.classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
     }
-    // Fecha ao clicar num link
     document.querySelectorAll('#navLinks a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('open');
-      });
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
     });
 
-    /* ---------- Reveal on scroll ---------- */
+    /* ── Reveal on scroll ── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          // Stagger suave para elementos em sequência
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, i * 60);
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    /* ---------- Filtro de animais ---------- */
+    /* ── Filtro de animais ── */
     function filterAnimals(tipo, btn) {
-      // Atualiza botão ativo
       document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
-
       const cards = document.querySelectorAll('.animal-card');
       let visible = 0;
-
       cards.forEach(card => {
-        if (tipo === 'todos' || card.dataset.tipo === tipo) {
-          card.style.display = '';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
+        if (tipo === 'todos' || card.dataset.tipo === tipo) { card.style.display = ''; visible++; }
+        else card.style.display = 'none';
       });
-
       document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
     }
 
-    /* ---------- Botão quero adotar ---------- */
+    /* ── Botão quero adotar ── */
     function entrarContato(nome) {
-      const msg = encodeURIComponent(`Olá! Vi o animal "${nome}" no AdotaDF e tenho interesse em adotar. Podemos conversar?`);
-      // Substitua pelo número do responsável ou abra o WhatsApp
-      // window.open('https://wa.me/5561900000000?text=' + msg, '_blank');
       alert(`💚 Ótimo! Entre em contato com o responsável pelo número exibido no card do(a) ${nome}.`);
     }
 
-    /* ---------- Formulário de cadastro ---------- */
+    /* ── Formulário de cadastro ── */
     function submitForm() {
-      const nome    = document.getElementById('animalNome').value.trim();
-      const tipo    = document.getElementById('animalTipo').value;
-      const idade   = document.getElementById('animalIdade').value;
-      const cidade  = document.getElementById('animalCidade').value.trim();
-      const desc    = document.getElementById('animalDesc').value.trim();
+      const nome = document.getElementById('animalNome').value.trim();
+      const tipo = document.getElementById('animalTipo').value;
+      const idade = document.getElementById('animalIdade').value;
+      const cidade = document.getElementById('animalCidade').value.trim();
+      const desc = document.getElementById('animalDesc').value.trim();
       const contato = document.getElementById('animalContato').value.trim();
-
       if (!nome || !tipo || !idade || !cidade || !desc || !contato) {
         alert('Por favor, preencha todos os campos obrigatórios (*).');
         return;
       }
-
-      /*
-       * ✅ INTEGRAÇÃO COM GOOGLE FORMS:
-       * 1. Crie um Google Form com os mesmos campos
-       * 2. Inspecione o form e copie os "entry.XXXXXXXX" de cada campo
-       * 3. Substitua a linha abaixo com a URL do seu form:
-       *
-       * const FORM_URL = 'https://docs.google.com/forms/d/e/SEU_FORM_ID/formResponse';
-       * const params = new URLSearchParams({
-       *   'entry.111111': nome,
-       *   'entry.222222': tipo,
-       *   'entry.333333': idade,
-       *   'entry.444444': cidade,
-       *   'entry.555555': desc,
-       *   'entry.666666': contato,
-       * });
-       * fetch(FORM_URL + '?' + params, { method: 'POST', mode: 'no-cors' });
-       */
-
-      // Por enquanto: exibe mensagem de sucesso
       document.getElementById('formContent').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     }
@@ -2348,7 +2278,7 @@
         .forEach(id => { document.getElementById(id).value = ''; });
     }
 
-    /* ---------- Abas: Adotar / Lar temporário ---------- */
+    /* ── Abas ── */
     function openTab(tab) {
       const isAdopt = tab === 'adopt';
       document.getElementById('tabAdopt').classList.toggle('active', isAdopt);
@@ -2357,7 +2287,7 @@
       document.getElementById('panelTemp').classList.toggle('active', !isAdopt);
     }
 
-    /* ---------- Dados dos animais disponíveis ---------- */
+    /* ── Dados dos animais ── */
     const ANIMALS = [
       { id: 'bolinha', nome: 'Bolinha',  tipo: 'cachorro', info: 'Cachorro · ~2 anos · Asa Sul',   emoji: '🐶' },
       { id: 'mimi',    nome: 'Mimi',     tipo: 'gato',     info: 'Gato · ~8 meses · Taguatinga',  emoji: '🐱' },
@@ -2367,16 +2297,13 @@
       { id: 'nala',    nome: 'Nala',     tipo: 'gato',     info: 'Gato · ~6 meses · Samambaia',   emoji: '🐱' },
     ];
 
-    /* ---------- Renderiza lista de animais no formulário ---------- */
     function renderAnimalList(containerId, mode) {
       const container = document.getElementById(containerId);
       const inputType = mode === 'adopt' ? 'radio' : 'checkbox';
       const inputName = mode === 'adopt' ? 'adoptAnimalChoice' : 'tempAnimalChoice';
-      const selectedClass = mode === 'adopt' ? 'selected' : 'selected-temp';
-
       container.innerHTML = ANIMALS.map(a => `
         <label class="animal-select-card" id="card-${mode}-${a.id}" onclick="selectAnimalCard('${mode}','${a.id}','${inputType}')">
-          <input type="${inputType}" name="${inputName}" value="${a.id}" style="accent-color:${mode==='adopt'?'var(--teal)':'var(--amber)'};">
+          <input type="${inputType}" name="${inputName}" value="${a.id}" style="accent-color:${mode==='adopt'?'var(--sage)':'var(--gold)'};">
           <div class="animal-card-mini">
             <div class="mini-emoji">${a.emoji}</div>
             <div class="mini-name">${a.nome}</div>
@@ -2392,66 +2319,33 @@
         document.querySelectorAll(`[id^="card-${mode}-"]`).forEach(c => c.classList.remove(selectedClass));
         document.getElementById(`card-${mode}-${id}`).classList.add(selectedClass);
       } else {
-        const card = document.getElementById(`card-${mode}-${id}`);
-        card.classList.toggle(selectedClass);
+        document.getElementById(`card-${mode}-${id}`).classList.toggle(selectedClass);
       }
     }
 
-    /* ---------- Lógica de escolha adoção ---------- */
+    /* ── Lógica adoção ── */
     let adoptChoice = null;
-
     function setAdoptChoice(choice) {
       adoptChoice = choice;
-      const selClass = 'selected-adopt';
-
-      document.getElementById('adoptChoiceSpecific').classList.toggle(selClass, choice === 'specific');
-      document.getElementById('adoptChoiceAny').classList.toggle(selClass, choice === 'any');
-
+      document.getElementById('adoptChoiceSpecific').classList.toggle('selected-adopt', choice === 'specific');
+      document.getElementById('adoptChoiceAny').classList.toggle('selected-adopt', choice === 'any');
       document.getElementById('adoptSpecificSection').classList.toggle('open', choice === 'specific');
       document.getElementById('adoptAnySection').classList.toggle('open', choice === 'any');
       document.getElementById('adoptCommonFields').classList.add('open');
-
-      if (choice === 'specific') {
-        renderAnimalList('adoptAnimalList', 'adopt');
-      }
+      if (choice === 'specific') renderAnimalList('adoptAnimalList', 'adopt');
     }
 
-    /* ---------- Lógica de escolha lar temporário ---------- */
-    let tempChoice = null;
-
-    function setTempChoice(choice) {
-      tempChoice = choice;
-      const selClass = 'selected-temp';
-
-      document.getElementById('tempChoiceSpecific').classList.toggle(selClass, choice === 'specific');
-      document.getElementById('tempChoiceAny').classList.toggle(selClass, choice === 'any');
-
-      document.getElementById('tempSpecificSection').classList.toggle('open', choice === 'specific');
-      document.getElementById('tempAnySection').classList.toggle('open', choice === 'any');
-      document.getElementById('tempCommonFields').classList.add('open');
-
-      if (choice === 'specific') {
-        renderAnimalList('tempAnimalList', 'temp');
-      }
-    }
-
-    /* ---------- Formulário de adoção ---------- */
     function submitAdopt() {
-      const nome    = document.getElementById('adoptNome').value.trim();
+      const nome = document.getElementById('adoptNome').value.trim();
       const contato = document.getElementById('adoptContato').value.trim();
-      const cidade  = document.getElementById('adoptCidade').value.trim();
-      const motivo  = document.getElementById('adoptMotivo').value.trim();
+      const cidade = document.getElementById('adoptCidade').value.trim();
+      const motivo = document.getElementById('adoptMotivo').value.trim();
       const moradia = document.querySelector('input[name="adoptMoradia"]:checked');
-
       if (!adoptChoice) { alert('Por favor, indique se você quer um animal específico ou aceita qualquer um.'); return; }
-      if (!nome || !contato || !cidade || !motivo || !moradia) {
-        alert('Por favor, preencha todos os campos obrigatórios (*).');
-        return;
-      }
+      if (!nome || !contato || !cidade || !motivo || !moradia) { alert('Por favor, preencha todos os campos obrigatórios (*).'); return; }
       if (adoptChoice === 'specific' && !document.querySelector('input[name="adoptAnimalChoice"]:checked')) {
         alert('Por favor, selecione o animal que você deseja adotar.'); return;
       }
-
       document.getElementById('adoptFormContent').style.display = 'none';
       document.getElementById('adoptSuccess').style.display = 'block';
     }
@@ -2460,42 +2354,40 @@
       adoptChoice = null;
       document.getElementById('adoptFormContent').style.display = '';
       document.getElementById('adoptSuccess').style.display = 'none';
-      ['adoptChoiceSpecific','adoptChoiceAny'].forEach(id => {
-        document.getElementById(id).classList.remove('selected-adopt');
-      });
-      ['adoptSpecificSection','adoptAnySection','adoptCommonFields'].forEach(id => {
-        document.getElementById(id).classList.remove('open');
-      });
-      ['adoptNome','adoptContato','adoptEmail','adoptCidade','adoptMotivo'].forEach(id => {
-        document.getElementById(id).value = '';
-      });
-      document.querySelectorAll('#panelAdopt input[type="radio"], #panelAdopt input[type="checkbox"]')
-        .forEach(el => { el.checked = false; });
+      ['adoptChoiceSpecific','adoptChoiceAny'].forEach(id => document.getElementById(id).classList.remove('selected-adopt'));
+      ['adoptSpecificSection','adoptAnySection','adoptCommonFields'].forEach(id => document.getElementById(id).classList.remove('open'));
+      ['adoptNome','adoptContato','adoptEmail','adoptCidade','adoptMotivo'].forEach(id => { document.getElementById(id).value = ''; });
+      document.querySelectorAll('#panelAdopt input[type="radio"], #panelAdopt input[type="checkbox"]').forEach(el => { el.checked = false; });
     }
 
-    /* ---------- Formulário lar temporário ---------- */
+    /* ── Lógica lar temporário ── */
+    let tempChoice = null;
+    function setTempChoice(choice) {
+      tempChoice = choice;
+      document.getElementById('tempChoiceSpecific').classList.toggle('selected-temp', choice === 'specific');
+      document.getElementById('tempChoiceAny').classList.toggle('selected-temp', choice === 'any');
+      document.getElementById('tempSpecificSection').classList.toggle('open', choice === 'specific');
+      document.getElementById('tempAnySection').classList.toggle('open', choice === 'any');
+      document.getElementById('tempCommonFields').classList.add('open');
+      if (choice === 'specific') renderAnimalList('tempAnimalList', 'temp');
+    }
+
     function submitTemp() {
-      const nome    = document.getElementById('tempNome').value.trim();
+      const nome = document.getElementById('tempNome').value.trim();
       const contato = document.getElementById('tempContato').value.trim();
-      const cidade  = document.getElementById('tempCidade').value.trim();
-      const disp    = document.getElementById('tempDisponibilidade').value;
+      const cidade = document.getElementById('tempCidade').value.trim();
+      const disp = document.getElementById('tempDisponibilidade').value;
       const duracao = document.querySelector('input[name="tempDuracao"]:checked');
       const moradia = document.querySelector('input[name="tempMoradia"]:checked');
-
       if (!tempChoice) { alert('Por favor, indique se você tem um animal em mente ou aceita qualquer um.'); return; }
-      if (!nome || !contato || !cidade || !disp || !duracao || !moradia) {
-        alert('Por favor, preencha todos os campos obrigatórios (*).');
-        return;
-      }
+      if (!nome || !contato || !cidade || !disp || !duracao || !moradia) { alert('Por favor, preencha todos os campos obrigatórios (*).'); return; }
       if (tempChoice === 'specific') {
-        const checked = document.querySelectorAll('input[name="tempAnimalChoice"]:checked');
-        if (checked.length === 0) { alert('Por favor, selecione pelo menos um animal.'); return; }
+        if (document.querySelectorAll('input[name="tempAnimalChoice"]:checked').length === 0) { alert('Por favor, selecione pelo menos um animal.'); return; }
       } else {
         const tipoOk = document.getElementById('tempCachorro').checked || document.getElementById('tempGato').checked
                     || document.getElementById('tempFilhote').checked || document.getElementById('tempIdoso').checked;
         if (!tipoOk) { alert('Por favor, selecione pelo menos um tipo de animal que você pode acolher.'); return; }
       }
-
       document.getElementById('tempFormContent').style.display = 'none';
       document.getElementById('tempSuccess').style.display = 'block';
     }
@@ -2504,18 +2396,11 @@
       tempChoice = null;
       document.getElementById('tempFormContent').style.display = '';
       document.getElementById('tempSuccess').style.display = 'none';
-      ['tempChoiceSpecific','tempChoiceAny'].forEach(id => {
-        document.getElementById(id).classList.remove('selected-temp');
-      });
-      ['tempSpecificSection','tempAnySection','tempCommonFields'].forEach(id => {
-        document.getElementById(id).classList.remove('open');
-      });
-      ['tempNome','tempContato','tempEmail','tempCidade','tempObs'].forEach(id => {
-        document.getElementById(id).value = '';
-      });
+      ['tempChoiceSpecific','tempChoiceAny'].forEach(id => document.getElementById(id).classList.remove('selected-temp'));
+      ['tempSpecificSection','tempAnySection','tempCommonFields'].forEach(id => document.getElementById(id).classList.remove('open'));
+      ['tempNome','tempContato','tempEmail','tempCidade','tempObs'].forEach(id => { document.getElementById(id).value = ''; });
       document.getElementById('tempDisponibilidade').value = '';
-      document.querySelectorAll('#panelTemp input[type="radio"], #panelTemp input[type="checkbox"]')
-        .forEach(el => { el.checked = false; });
+      document.querySelectorAll('#panelTemp input[type="radio"], #panelTemp input[type="checkbox"]').forEach(el => { el.checked = false; });
     }
   </script>
 
